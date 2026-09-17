@@ -1,0 +1,98 @@
+import csv
+
+DATASET_FILE = "security_dataset.csv"
+
+examples = [
+
+    # =========================
+    # LOW RISK — 20 examples
+    # =========================
+    ["modified", "Theme", "Light", "Dark", 10, "LOW RISK"],
+    ["modified", "Language", "English", "French", 10, "LOW RISK"],
+    ["added", "DisplayName", "", "Example Application", 5, "LOW RISK"],
+    ["modified", "WindowSize", "1280", "1920", 10, "LOW RISK"],
+    ["modified", "FontSize", "10", "12", 10, "LOW RISK"],
+    ["modified", "Wallpaper", "Default", "CustomWallpaper", 10, "LOW RISK"],
+    ["modified", "ColorMode", "Light", "Dark", 10, "LOW RISK"],
+    ["added", "RecentFile", "", "document.txt", 5, "LOW RISK"],
+    ["modified", "Volume", "50", "75", 10, "LOW RISK"],
+    ["modified", "TimeZone", "UTC", "UTC+1", 10, "LOW RISK"],
+    ["modified", "ScreenResolution", "1920x1080", "2560x1440", 10, "LOW RISK"],
+    ["modified", "MouseSpeed", "10", "12", 10, "LOW RISK"],
+    ["added", "UserPreference", "", "DarkMode", 5, "LOW RISK"],
+    ["modified", "KeyboardLayout", "US", "UK", 10, "LOW RISK"],
+    ["modified", "Brightness", "50", "70", 10, "LOW RISK"],
+    ["added", "ApplicationSetting", "", "Normal", 5, "LOW RISK"],
+    ["modified", "NotificationSetting", "Enabled", "Disabled", 10, "LOW RISK"],
+    ["modified", "AudioDevice", "Default", "Headphones", 10, "LOW RISK"],
+    ["added", "RecentDocument", "", "notes.txt", 5, "LOW RISK"],
+    ["modified", "CursorSize", "1", "2", 10, "LOW RISK"],
+
+    # =========================
+    # SUSPICIOUS — 20 examples
+    # =========================
+    ["modified", "StartupCommand", "Safe", "Unknown Script", 60, "SUSPICIOUS"],
+    ["added", "RunCommand", "", "Unknown Command", 55, "SUSPICIOUS"],
+    ["modified", "Shell", "Normal", "Command Shell", 60, "SUSPICIOUS"],
+    ["added", "StartupScript", "", "Unknown Script", 55, "SUSPICIOUS"],
+    ["modified", "AutoRun", "Disabled", "Enabled", 45, "SUSPICIOUS"],
+    ["added", "LoginScript", "", "Unknown Script", 55, "SUSPICIOUS"],
+    ["modified", "CommandPath", "", "Temporary Script", 50, "SUSPICIOUS"],
+    ["modified", "ScriptPath", "", "Unknown PowerShell Script", 60, "SUSPICIOUS"],
+    ["added", "ServiceCommand", "", "Unknown Command", 55, "SUSPICIOUS"],
+    ["modified", "StartupTask", "Disabled", "Enabled", 45, "SUSPICIOUS"],
+    ["modified", "LoginCommand", "Normal", "Unknown Command", 55, "SUSPICIOUS"],
+    ["added", "ScheduledTask", "", "Unknown Task", 50, "SUSPICIOUS"],
+    ["modified", "StartupFolder", "Empty", "Unknown Script", 55, "SUSPICIOUS"],
+    ["added", "CommandEntry", "", "Unknown Script", 55, "SUSPICIOUS"],
+    ["modified", "ServicePath", "Normal", "Unknown Executable", 60, "SUSPICIOUS"],
+    ["added", "StartupEntry", "", "Unknown Program", 50, "SUSPICIOUS"],
+    ["modified", "AutorunCommand", "Disabled", "Unknown Command", 55, "SUSPICIOUS"],
+    ["added", "LoginTask", "", "Unknown Script", 50, "SUSPICIOUS"],
+    ["modified", "ExecutionPath", "Normal", "Temporary Script", 50, "SUSPICIOUS"],
+    ["added", "BackgroundCommand", "", "Unknown Command", 50, "SUSPICIOUS"],
+
+    # =========================
+    # HIGH RISK — 20 examples
+    # =========================
+    ["modified", "PowerShellCommand", "Safe", "PowerShell Encoded Script", 90, "HIGH RISK"],
+    ["added", "StartupScript", "", "PowerShell Script", 90, "HIGH RISK"],
+    ["modified", "Run", "Safe", "Command Shell Script", 80, "HIGH RISK"],
+    ["added", "PowerShellCommand", "", "PowerShell Encoded Script", 90, "HIGH RISK"],
+    ["modified", "Shell", "Safe", "Command Shell Script", 80, "HIGH RISK"],
+    ["added", "RunCommand", "", "PowerShell Execution Script", 90, "HIGH RISK"],
+    ["modified", "StartupCommand", "Safe", "Script Interpreter", 80, "HIGH RISK"],
+    ["added", "ScriptCommand", "", "PowerShell Hidden Script", 90, "HIGH RISK"],
+    ["modified", "AutoRun", "Disabled", "PowerShell Script", 85, "HIGH RISK"],
+    ["added", "PersistenceCommand", "", "Suspicious PowerShell Script", 90, "HIGH RISK"],
+    ["modified", "LoginCommand", "Normal", "Encoded PowerShell Script", 90, "HIGH RISK"],
+    ["added", "ScheduledTask", "", "PowerShell Persistence Script", 90, "HIGH RISK"],
+    ["modified", "StartupFolder", "Empty", "PowerShell Script", 85, "HIGH RISK"],
+    ["added", "CommandEntry", "", "Encoded Script", 85, "HIGH RISK"],
+    ["modified", "ServicePath", "Normal", "Suspicious Script Interpreter", 85, "HIGH RISK"],
+    ["added", "StartupEntry", "", "Hidden PowerShell Script", 90, "HIGH RISK"],
+    ["modified", "AutorunCommand", "Disabled", "Encoded Command Script", 85, "HIGH RISK"],
+    ["added", "LoginTask", "", "PowerShell Persistence", 90, "HIGH RISK"],
+    ["modified", "ExecutionPath", "Normal", "Hidden Script Interpreter", 85, "HIGH RISK"],
+    ["added", "BackgroundCommand", "", "Encoded PowerShell Script", 90, "HIGH RISK"]
+]
+
+with open(DATASET_FILE, "w", newline="", encoding="utf-8") as file:
+    writer = csv.writer(file)
+
+    writer.writerow([
+        "change_type",
+        "value_name",
+        "old_value",
+        "new_value",
+        "risk_score",
+        "classification"
+    ])
+
+    writer.writerows(examples)
+
+print("Training dataset created successfully.")
+print("Total examples:", len(examples))
+print("LOW RISK: 20")
+print("SUSPICIOUS: 20")
+print("HIGH RISK: 20")

@@ -1,0 +1,5 @@
+change_type,value_name,old_value,new_value,risk_score,classification
+modified,TestValue,Safe,PowerShell Encoded Script,70,HIGH RISK
+modified,TestValue,Safe,PowerShell Encoded Script,70,HIGH RISK
+modified,TestValue,Safe,Normal User Setting,10,LOW RISK
+modified,TestValue,Normal User Setting,PowerShell Encoded Script,70,HIGH RISK

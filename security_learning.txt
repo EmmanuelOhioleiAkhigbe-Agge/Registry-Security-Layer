@@ -1,0 +1,6 @@
+Changed TestValue inside RegistrySecurityTest_New|SAFE
+Changed PowerShell startup command|SUSPICIOUS
+Changed value TestValue from Safe to Changed|SAFE
+Changed value TestValue from Safe to Suspicious Change|SAFE
+Changed startup value to execute PowerShell command|80|HIGH RISK
+Changed value TestValue from Safe to PowerShell command|70|HIGH RISK
